@@ -1,12 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import Posts from './pages/Posts';
 
-const Router = () => (
+const Router = ({ onToggleImg }) => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/posts" element={<Posts />} />
+      <Route path="/" element={<Home onToggleImg={onToggleImg} />} />
     </Routes>
   </BrowserRouter>
 );

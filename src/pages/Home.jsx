@@ -1,29 +1,25 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Header from './Header';
+import MultiCarousel from './MultiCarousel';
+import Search from './Search';
 
-const Home = () => {
-  const navigate = useNavigate();
-
-  const onSubmit = () => navigate('/posts');
+function Home({ onToggleImg }) {
+  const [toggleNews, setToggleNews] = useState(true);
+  const onToggleNews = () => {
+    if (toggleNews) {
+      setToggleNews(false);
+    } else {
+      setToggleNews(true);
+    }
+  };
 
   return (
-    <main>
-      <div className="bg-light p-5 mb-5">
-        <h1>React + Bootstrap v4</h1>
-        <p>React template with Bootstrap version v4</p>
-        <p>
-          <Button variant="primary">Learn more</Button>
-        </p>
-      </div>
-      <Container>
-        <Form>
-          <Button onClick={onSubmit}>Goto Posts</Button>
-        </Form>
-      </Container>
-    </main>
+    <div>
+      <Header onToggleNews={onToggleNews} onToggleImg={onToggleImg} />
+      <Search />
+      {toggleNews && <MultiCarousel />}
+    </div>
   );
-};
+}
 
 export default Home;
